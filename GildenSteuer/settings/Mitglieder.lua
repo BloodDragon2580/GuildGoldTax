@@ -19,7 +19,7 @@ local function CreateRow(self, parent)
 	for i, r in pairs(self.columns) do
 		local col = CreateFrame("Button", nil, row)
 		col:SetHeight(self.rowHeight)
-		col.textString = col:CreateFontString(nil, "BACKGROUND", "GameFontHighlightSmall")
+		col.textString = col:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall") -- 12.0.5: BACKGROUND kann in Szenarien hinter dem Frame verschwinden
 		col.textString:SetAllPoints()
 		col.textString:SetJustifyH(r[3])
 		row.cols[#row.cols + 1] = col

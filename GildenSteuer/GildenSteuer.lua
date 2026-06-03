@@ -1,4 +1,4 @@
-local VERSION = "15.0"
+local VERSION = "15.7"
 local DEVELOPMENT = false
 local SLASH_COMMAND = "gt"
 local MESSAGE_PREFIX = "GT"
@@ -884,6 +884,20 @@ function GildenSteuer:PLAYER_ENTERING_WORLD( ... )
     self:UpdatePlayerName()
     self:UpdatePlayerMoney()
     self:UpdateGuildInfo()
+
+    -- 12.0.5: Szenarien/Phasenwechsel feuern PLAYER_ENTERING_WORLD,
+    -- bevor die Gildenliste immer vollständig aktualisiert ist.
+    -- Daher einmal kurz danach den Roster erneut anfordern und die Tabelle hart neu zeichnen.
+    C_Timer.After(0.5, function()
+        if GildenSteuer and GildenSteuer.GUI and GildenSteuer.GUI.RefreshTable then
+            if C_GuildInfo and C_GuildInfo.GuildRoster then C_GuildInfo.GuildRoster() end
+            GildenSteuer.GUI.updated = nil
+            if GildenSteuer.GUI.frame and GildenSteuer.GUI.frame:IsShown() then
+                GildenSteuer.GUI:RefreshTable()
+                GildenSteuer.GUI:UpdatePayedStatus()
+            end
+        end
+    end)
 
     -- ✅ HIER: Popup-Hinweis einmalig anzeigen (wenn Migration pending ist)
     if self.MaybeShowWarbandMigrationHint then

@@ -222,6 +222,18 @@ local function CreateModernContainer()
 
   f:SetScript("OnShow", function()
     ApplyAlpha(IsPlayerMoving())
+    -- 12.0.5/Szenarien: Nach Phasen-/Szenario-Wechseln kann die Gildenroster-UI
+    -- sichtbar sein, bevor Blizzard die Roster-Daten wieder sauber liefert.
+    -- Kurz verzögert neu anfordern/zeichnen, damit Namen nicht bis /reload leer bleiben.
+    if C_Timer and GildenSteuer and GildenSteuer.GUI and GildenSteuer.GUI.RefreshTable then
+      C_Timer.After(0.2, function()
+        if GildenSteuer and GildenSteuer.GUI and GildenSteuer.GUI.frame and GildenSteuer.GUI.frame:IsShown() then
+          if C_GuildInfo and C_GuildInfo.GuildRoster then C_GuildInfo.GuildRoster() end
+          GildenSteuer.GUI.updated = nil
+          GildenSteuer.GUI:RefreshTable()
+        end
+      end)
+    end
   end)
 
   -- ===== Resize-Handle (unten rechts) =====
