@@ -1,4 +1,4 @@
-local VERSION = "15.7"
+local VERSION = "16.3"
 local DEVELOPMENT = false
 local SLASH_COMMAND = "gt"
 local MESSAGE_PREFIX = "GT"
@@ -31,8 +31,7 @@ GildenSteuer = LibStub("AceAddon-3.0"):NewAddon(
   "GildenSteuer",
   "AceConsole-3.0",
   "AceEvent-3.0",
-  "AceComm-3.0",
-  "AceHook-3.0"
+  "AceComm-3.0"
 )
 
 getmetatable(GildenSteuer).__tostring = function()
@@ -91,9 +90,10 @@ function GildenSteuer:OnInitialize()
     self.nextSyncTimestamp = time()
     self.nextPurgeTimestamp = time()
 
-    -- NEW NEW: NEU: Hook ...
-    if QuestInfoRewardsFrame then
-        GildenSteuer:HookScript(QuestInfoRewardsFrame, "OnShow", function(self)
+    -- Quest reward frame: use Blizzard's native HookScript instead of AceHook.
+    -- This avoids replacing Blizzard functions and keeps the hook non-destructive.
+    if QuestInfoRewardsFrame and QuestInfoRewardsFrame.HookScript then
+        QuestInfoRewardsFrame:HookScript("OnShow", function()
             GildenSteuer:SetNormalIncomeWindow(5.0)
         end)
     end
@@ -287,7 +287,7 @@ function GildenSteuer:PrintTax()
 	if self:GetTax() >= 1 then
 		message = format(GT_CHAT_TAX, self:FormatMoney(self:GetTax()))
 		if (self.isBankOpened and not self.db.profile.autopay) then
-			message = message .. " |Hitem:GildenSteuer:create:|h|cffff8000[" .. GT_CHAT_TAX_CLICK .. "]|r|h"
+			message = message .. " |cffff8000|Haddon:GildenSteuer:pay|h[" .. GT_CHAT_TAX_CLICK .. "]|h|r"
 		end
 	else
 		message = GT_CHAT_ALL_PAYED
@@ -859,23 +859,24 @@ function GildenSteuer:OnCommReceived(prefix, message, channel, sender)
 	end
 end
 
-function GildenSteuer:ChatFrame_OnHyperlinkShow(chat, link, text, button)
-	local command = strsub(link, 1, 4);
-	if command == "item" then
-		local _, addonName = strsplit(":", link)
-		if addonName == "GildenSteuer" then
-			if GildenSteuer.isReady then
-				local tax = floor(self:GetTax())
-				if tax > 0 then
-					self:PayTax()
-				else
-					self:PrintNothingToPay()
-				end
-			else
-				self:PrintNotReady()
-			end
-		end
-	end
+function GildenSteuer:HandleAddonHyperlink(link)
+    if type(link) ~= "string" then return end
+
+    local linkType, addonName, action = strsplit(":", link, 3)
+    if linkType ~= "addon" or addonName ~= "GildenSteuer" or action ~= "pay" then
+        return
+    end
+
+    if self.isReady then
+        local tax = floor(self:GetTax())
+        if tax > 0 then
+            self:PayTax()
+        else
+            self:PrintNothingToPay()
+        end
+    else
+        self:PrintNotReady()
+    end
 end
 
 function GildenSteuer:PLAYER_ENTERING_WORLD( ... )
@@ -1236,17 +1237,12 @@ function GildenSteuer:GUILD_ROSTER_UPDATE( ... )
 	self:Ready()
 end
 
--- Kompatibler Hyperlink-Hook:
--- Ältere Clients hatten eine globale Funktion ChatFrame_OnHyperlinkShow,
--- in TWW / 11.2.7 ist sie nicht mehr global verfügbar.
-if ChatFrame_OnHyperlinkShow then
-    -- Falls sie (z.B. in älteren Versionen oder anderen Clients) noch existiert:
-    GildenSteuer:Hook("ChatFrame_OnHyperlinkShow", true)
-else
-    -- Retail 11.2.7+: an SetItemRef anhängen, das wird bei Link-Klicks im Chat aufgerufen
-    hooksecurefunc("SetItemRef", function(link, text, button, chatFrame)
-        -- Verwende deine bestehende Logik
-        GildenSteuer:ChatFrame_OnHyperlinkShow(chatFrame, link, text, button)
+-- Eigene Chat-Links über Blizzards offiziellen AddOn-Link-Callback verarbeiten.
+-- Wichtig: keine globale Blizzard-Funktion ersetzen/hooken. Das verhindert, dass
+-- GildenSteuer Taint in geschützte UI-Bereiche wie den Catalog Shop weiterträgt.
+if EventRegistry and EventRegistry.RegisterCallback then
+    EventRegistry:RegisterCallback("SetItemRef", function(_, link, text, button, chatFrame)
+        GildenSteuer:HandleAddonHyperlink(link)
     end)
 end
 
