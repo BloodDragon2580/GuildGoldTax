@@ -11,7 +11,7 @@ GT_CHAT_OPEN_BANK            = "Пожалуйста, откройте банк 
 GT_CHAT_PAYING_TAX           = "Оплачиваю %s налога"
 GT_CHAT_NOT_READY            = "Аддон ещё не готов, попробуйте позже."
 
-GT_CONFIG_TITLE              = "Налоги гильдии"
+GT_CONFIG_TITLE              = "GuildGoldTax"
 GT_CONFIG_TAXES_TITLE        = "Настройки налога"
 GT_CONFIG_TAXES_RANGE        = "Ставка налога"
 GT_CONFIG_TAXES_RANGE_DESC   = "Процент от всего полученного золота, который будет начисляться для уплаты в банк гильдии."
@@ -31,7 +31,7 @@ GT_CONFIG_TAXES_IGNORE_MAIL_DESC = "Если включено, золото, п�
 GT_CONFIG_TAXES_IGNORE_TRADE = "Игнорировать доход от торговли"
 GT_CONFIG_TAXES_IGNORE_TRADE_DESC = "Если включено, золото, полученное в торговле с игроками, не будет облагаться налогом."
 
-GT_GUI_TITLE                 = "Налоги гильдии"
+GT_GUI_TITLE                 = "GuildGoldTax"
 GT_GUI_ALL_PAYED             = "Всё оплачено"
 GT_GUI_TAX                   = "Налог: %s"
 GT_GUI_GENERAL_INFO          = ", в гильдию перечисляется |cffffff00%i%%|r"
