@@ -1,6 +1,6 @@
 if GetLocale() ~= "ruRU" then return end
 
-GT_CHAT_PREFIX               = "GildenSteuer"
+GT_CHAT_PREFIX               = "GuildGoldTax"
 GT_CHAT_GENERAL_INFO         = "Ставка налога |cffffff00%i%%|r для гильдии |cffffff00%s|r@|cffffff00%s|r."
 GT_CHAT_TAX                  = "Начислено налогов: %s"
 GT_CHAT_TAX_CLICK            = "Нажмите для оплаты"
@@ -53,9 +53,9 @@ GT_GUI_MONTH_10              = "Окт"
 GT_GUI_MONTH_11              = "Ноя"
 GT_GUI_MONTH_12              = "Дек"
 GT_CONFIG_MINIMAP_SHOW = "Показывать значок на мини-карте"
-GT_CONFIG_MINIMAP_SHOW_DESC = "Показывать или скрывать значок GildenSteuer на мини-карте."
+GT_CONFIG_MINIMAP_SHOW_DESC = "Показывать или скрывать значок GuildGoldTax на мини-карте."
 
-GT_MINIMAP_TT_HEADER = "GildenSteuer"
+GT_MINIMAP_TT_HEADER = "GuildGoldTax"
 GT_MINIMAP_TT_LEFTCLICK = "ЛКМ: показать/скрыть окно"
 
 

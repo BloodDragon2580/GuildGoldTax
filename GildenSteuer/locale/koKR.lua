@@ -6,7 +6,7 @@ GT_CHAT_NOT_READY = "애드온이 아직 준비되지 않았습니다. 잠시 �
 GT_CHAT_NOTHING_TO_PAY = "납부할 세금이 없습니다."
 GT_CHAT_OPEN_BANK = "길드 은행을 열어주세요!"
 GT_CHAT_PAYING_TAX = "%s 세금 납부 중"
-GT_CHAT_PREFIX = "GildenSteuer"
+GT_CHAT_PREFIX = "GuildGoldTax"
 GT_CHAT_TAX = "납부해야 할 금액: %s"
 GT_CHAT_TAX_CLICK = "클릭하여 납부"
 GT_CHAT_TRANSACTION = "%s 획득 (세금 %s)"
@@ -53,9 +53,9 @@ GT_GUI_ONLINE_ONLY = "온라인만"
 GT_GUI_TAX = "세금: %s"
 GT_GUI_TITLE = "길드 세금"
 GT_CONFIG_MINIMAP_SHOW = "미니맵 아이콘 표시"
-GT_CONFIG_MINIMAP_SHOW_DESC = "미니맵에 GildenSteuer 아이콘을 표시하거나 숨깁니다."
+GT_CONFIG_MINIMAP_SHOW_DESC = "미니맵에 GuildGoldTax 아이콘을 표시하거나 숨깁니다."
 
-GT_MINIMAP_TT_HEADER = "GildenSteuer"
+GT_MINIMAP_TT_HEADER = "GuildGoldTax"
 GT_MINIMAP_TT_LEFTCLICK = "좌클릭: 창 표시/숨기기"
 
 

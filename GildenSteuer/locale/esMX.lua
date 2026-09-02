@@ -6,7 +6,7 @@ GT_CHAT_NOT_READY = "El addon aún no está listo, inténtalo de nuevo más tard
 GT_CHAT_NOTHING_TO_PAY = "Nada que pagar."
 GT_CHAT_OPEN_BANK = "¡Por favor abre el banco de hermandad!"
 GT_CHAT_PAYING_TAX = "Pagando %s de impuestos"
-GT_CHAT_PREFIX = "GildenSteuer"
+GT_CHAT_PREFIX = "GuildGoldTax"
 GT_CHAT_TAX = "Por pagar: %s"
 GT_CHAT_TAX_CLICK = "Haz clic para pagar"
 GT_CHAT_TRANSACTION = "Recibido %s (impuesto %s)"
@@ -53,9 +53,9 @@ GT_GUI_ONLINE_ONLY = "Solo en línea"
 GT_GUI_TAX = "Impuestos pendientes: %s"
 GT_GUI_TITLE = "Impuestos de hermandad"
 GT_CONFIG_MINIMAP_SHOW = "Mostrar icono en el minimapa"
-GT_CONFIG_MINIMAP_SHOW_DESC = "Muestra u oculta el ícono de GildenSteuer en el minimapa."
+GT_CONFIG_MINIMAP_SHOW_DESC = "Muestra u oculta el ícono de GuildGoldTax en el minimapa."
 
-GT_MINIMAP_TT_HEADER = "GildenSteuer"
+GT_MINIMAP_TT_HEADER = "GuildGoldTax"
 GT_MINIMAP_TT_LEFTCLICK = "Clic izquierdo: mostrar/ocultar ventana"
 
 

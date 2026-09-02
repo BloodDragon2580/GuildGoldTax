@@ -6,7 +6,7 @@ GT_CHAT_NOT_READY = "L'addon n'est pas encore prêt, veuillez réessayer plus ta
 GT_CHAT_NOTHING_TO_PAY = "Rien à payer."
 GT_CHAT_OPEN_BANK = "Veuillez ouvrir la banque de guilde."
 GT_CHAT_PAYING_TAX = "Paiement de %s en taxes"
-GT_CHAT_PREFIX = "GildenSteuer"
+GT_CHAT_PREFIX = "GuildGoldTax"
 GT_CHAT_TAX = "Taxes dues : %s"
 GT_CHAT_TAX_CLICK = "Cliquez pour payer"
 GT_CHAT_TRANSACTION = "Reçu %s (taxe %s)"
@@ -53,9 +53,9 @@ GT_GUI_ONLINE_ONLY = "En ligne seulement"
 GT_GUI_TAX = "Taxes : %s"
 GT_GUI_TITLE = "Taxes de guilde"
 GT_CONFIG_MINIMAP_SHOW = "Afficher l’icône sur la minicarte"
-GT_CONFIG_MINIMAP_SHOW_DESC = "Affiche ou masque l’icône de GildenSteuer sur la minicarte."
+GT_CONFIG_MINIMAP_SHOW_DESC = "Affiche ou masque l’icône de GuildGoldTax sur la minicarte."
 
-GT_MINIMAP_TT_HEADER = "GildenSteuer"
+GT_MINIMAP_TT_HEADER = "GuildGoldTax"
 GT_MINIMAP_TT_LEFTCLICK = "Clic gauche : afficher/masquer la fenêtre"
 
 

@@ -35,7 +35,7 @@ GildenSteuer = LibStub("AceAddon-3.0"):NewAddon(
 )
 
 getmetatable(GildenSteuer).__tostring = function()
-  return GT_CHAT_PREFIX or "GildenSteuer"
+  return GT_CHAT_PREFIX or "GuildGoldTax"
 end
 
 function GildenSteuer:OnInitialize()
@@ -58,7 +58,7 @@ function GildenSteuer:OnInitialize()
                 end,
                 OnTooltipShow = function(tt)
 				    -- Titel: nimmt bevorzugt deine neue Übersetzung, sonst GT_CHAT_PREFIX, sonst Fallback
-                    tt:AddLine(GT_MINIMAP_TT_HEADER or GT_CHAT_PREFIX or "GildenSteuer")
+                    tt:AddLine(GT_MINIMAP_TT_HEADER or GT_CHAT_PREFIX or "GuildGoldTax")
 				    -- Linksklick-Hinweis lokalisiert, mit englischem Fallback
                     tt:AddLine(GT_MINIMAP_TT_LEFTCLICK or "Left-click to toggle window", 0.2, 1, 0.2)
                 end,
@@ -149,7 +149,7 @@ function GildenSteuer:ShowOneTimePopup(text)
 
     local title = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
     title:SetPoint("TOPLEFT", 16, -14)
-    title:SetText(GT_CHAT_PREFIX or "GildenSteuer")
+    title:SetText(GT_CHAT_PREFIX or "GuildGoldTax")
 
     local msg = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     msg:SetPoint("TOPLEFT", 16, -44)

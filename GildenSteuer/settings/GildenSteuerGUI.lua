@@ -138,7 +138,7 @@ local function CreateModernContainer()
 
   local title = f:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
   title:SetPoint("TOP", f, "TOP", 0, -9)
-  title:SetText(GT_GUI_TITLE or "GildenSteuer")
+  title:SetText(GT_GUI_TITLE or "GuildGoldTax")
   title:SetJustifyH("CENTER")
   title:SetTextColor(1, 1, 1, 1)
   title:SetShadowColor(0, 0, 0, 1)
