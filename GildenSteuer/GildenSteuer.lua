@@ -115,7 +115,7 @@ end
 local _GS_GetMoney = GetMoney
 local _GS_C_Bank = C_Bank
 local _GS_C_Timer = C_Timer
-local _GS_GetCoinTextureString = GetCoinTextureString
+local _GS_GetCoinTextureString = C_CurrencyInfo.GetCoinTextureString
 
 -- ============================================================
 -- One-time Popup (Migration / Info)
@@ -272,9 +272,9 @@ end
 
 function GildenSteuer:FormatMoney(amount, color)
 	if amount < 0 then
-		return "-" .. GetCoinTextureString(-amount)
+		return "-" .. _GS_GetCoinTextureString(-amount)
 	else
-		return GetCoinTextureString(amount)
+		return _GS_GetCoinTextureString(amount)
 	end
 end
 
